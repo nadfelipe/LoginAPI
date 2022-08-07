@@ -19,12 +19,15 @@ namespace login_webAPI.Controllers
         [HttpPost]
         public IActionResult Logar(string email, string senha)
         {
-            var usuario = _context.Usuarios.Where(x => x.Email == email && x.Senha == senha).FirstOrDefault();
+            var usuario = _context.Usuarios.Where(x => x.Email == email).FirstOrDefault();
 
             if (usuario == null)
                 return NotFound();
 
-            return Ok(usuario);
+            if (BCrypt.Net.BCrypt.Verify(senha, usuario.Senha))
+                return Ok(usuario);
+
+            return Unauthorized();
         }
     }
 }

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "C+ay1MAoM5ycL08R+T1Z+r5i1AeaonIlCW2r3302KB01guHd0bd6HnpMG7vaOB009WOpW/fHnGURPt2hzUVr4w==",
+  "dgSpecHash": "3+VtPmC91sqohOVHn7CuyJNjahIsoCPe5YoYr+EJxeOCAXMLjz/fjJqhJRHwVdAta0eLPbQOwU6kUttT6nEw3g==",
   "success": true,
   "projectFilePath": "C:\\Users\\daniel.santos\\Documents\\Github\\LoginAPI\\login_webAPI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\daniel.santos\\.nuget\\packages\\bcrypt.net-core\\1.6.0\\bcrypt.net-core.1.6.0.nupkg.sha512",
     "C:\\Users\\daniel.santos\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\daniel.santos\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\daniel.santos\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\5.0.17\\microsoft.aspnetcore.jsonpatch.5.0.17.nupkg.sha512",
