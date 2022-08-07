@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using System;
@@ -30,6 +31,26 @@ namespace login_webAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Login API", Version = "v1" });
             });
 
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = "JwtBearer";
+                options.DefaultChallengeScheme = "JwtBearer";
+            })
+
+            .AddJwtBearer("JwtBearer", options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("login-autenticacao")),
+                    ClockSkew = TimeSpan.FromMinutes(30),
+                    ValidIssuer = "login.webAPI",
+                    ValidAudience = "login.webAPI"
+                };
+            });
+
             services.AddTransient<LoginContext>();
         }
 
@@ -48,6 +69,8 @@ namespace login_webAPI
             }
 
             app.UseRouting();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
