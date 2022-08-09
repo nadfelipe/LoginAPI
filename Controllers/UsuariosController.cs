@@ -25,14 +25,14 @@ namespace login_webAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuarios()
         {
-            return await _context.Usuarios.ToListAsync();
+            return await _context.Usuarios.Include("IdTipoUsuarioNavigation").ToListAsync();
         }
 
         // GET: api/Usuarios/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Usuario>> GetUsuario(Guid id)
         {
-            var usuario = await _context.Usuarios.FindAsync(id);
+            var usuario = await _context.Usuarios.Include("IdTipoUsuarioNavigation").SingleOrDefaultAsync(i => i.Id == id);
 
             if (usuario == null)
             {
